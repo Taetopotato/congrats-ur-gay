@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>wow you must be gay</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      overflow: hidden;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      color: #000;
+      margin-bottom: 50px;
+    }
+
+    .button-container {
+      position: relative;
+      width: 100%;
+      height: 150px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .yes, .no {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: white;
+      z-index: 2;
+      box-shadow: 0 0 8px 2px #ff1493;
+      text-shadow: 0 1px 2px #000;
+    }
+
+    .no {
+      background-color: #f5f5f5;
+      color: #555;
+      z-index: 3;
+    }
+
+    .popup, .terms-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      text-align: left;
+      width: 320px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .popup h2,
+    .terms-modal h2 {
+      margin-top: 0;
+      font-size: 1.3em;
+      color: #000;
+      text-align: center;
+    }
+
+    .popup button,
+    .terms-modal button {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .terms-list label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    .terms-list input[type="checkbox"] {
+      margin-top: 2px;
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      border-radius: 50%;
+      animation: sparkle 0.8s ease-out forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes sparkle {
+      to {
+        transform: translateY(-50px) scale(0);
+        opacity: 0;
+      }
+    }
+
+    canvas#fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .spotify-corner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      z-index: 10;
+      background-color: #fff0f5;
+      padding: 10px;
+      border-radius: 14px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-align: left;
+    }
+
+    .spotify-label {
+      font-size: 0.85em;
+      color: #444;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    iframe {
+      width: 100%;
+      height: 80px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .chill-cat {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 100px;
+      z-index: 5;
+      pointer-events: none;
+    }
+  @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="fireworks"></canvas>
+
+  <div class="chill-cat">
+    <div class="tenor-gif-embed" data-postid="23310050" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+      <a href="https://tenor.com/view/csgo-dancing-css-groovy-swag-gif-23310050">Csgo Dancing Sticker</a>
+    </div>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+  </div>
+
+  <div class="spotify-corner">
+    <div class="spotify-label">i don’t really listen to cute wholesome songs... 🙄</div>
+    <iframe 
+      src="https://open.spotify.com/embed/playlist/4DJvO1U6EDEYHFmOODbTH0?utm_source=generator&theme=0" 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <main>
+    <h1>Will you be my girlfriend?</h1>
+    <div class="button-container">
+      <button class="yes" id="yesBtn">Yes</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+  </main>
+
+  <div class="terms-modal" id="termsModal">
+    <h2>Terms & Conditions of Being My Girlfriend</h2>
+    <form id="termsForm" class="terms-list">
+      <label><input type="checkbox" required> <span>Send at least one silly insta reel per day</span></label>
+      <label><input type="checkbox" required> <span>Be patient when I overthink everything</span></label>
+      <label><input type="checkbox" required> <span>Accept you may be subject to biting</span></label>
+      <label><input type="checkbox" required> <span>Cuddle privileges are non-negotiable</span></label>
+      <label><input type="checkbox" required> <span>Laugh at my jokes, even when they’re bad</span></label>
+      <label><input type="checkbox" required> <span>Provide comfort during existential crises</span></label>
+      <label><input type="checkbox" required> <span>Agree that food is serious business</span></label>
+      <label><input type="checkbox" required> <span>Know that you’re loved even on grumpy days</span></label>
+      <label><input type="checkbox" required> <span>Call me cute when I’m annoying</span></label>
+      <label><input type="checkbox" required> <span>Admit you are the most beautiful girl in the world</span></label>
+      <label><input type="checkbox" required> <span>No takesies backsies 💘</span></label>
+      <button type="submit">I Agree</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup">
+    <h2>Congratulations. You're... gay 🌈💖</h2>
+    <button onclick="document.getElementById('popup').style.display='none';
+      document.getElementById('final-heart').style.display = 'block';">Awww</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const canvas = document.getElementById('fireworks');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createParticles(x, y) {
+      const colors = ['#ff69b4', '#ffd700', '#00ffff', '#ff00ff', '#00ff00', '#ff4500'];
+      for (let i = 0; i < 80; i++) {
+        const angle = Math.random() * 2 * Math.PI;
+        const speed = Math.random() * 5 + 2;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          radius: Math.random() * 2 + 1
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.fillStyle = 'rgba(255,240,245,0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(p => p.alpha > 0);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.01;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    function launchFirework() {
+      createParticles(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    noBtn.addEventListener('mouseenter', () => {
+      const range = 600;
+      const newX = window.innerWidth / 2 + (Math.random() - 0.5) * range;
+      const newY = window.innerHeight / 2 + (Math.random() - 0.5) * range;
+      noBtn.style.left = Math.max(0, Math.min(window.innerWidth - noBtn.offsetWidth, newX)) + 'px';
+      noBtn.style.top = Math.max(0, Math.min(window.innerHeight - noBtn.offsetHeight, newY)) + 'px';
+      noBtn.style.transform = 'translate(0,0)';
+      noBtn.style.position = 'fixed';
+    });
+
+    noBtn.addEventListener('click', () => alert("No? Are you *sure*? 😭 Try clicking 'Yes' instead."));
+
+    yesBtn.addEventListener('click', (e) => {
+      yesBtn.style.display = 'none';
+      noBtn.style.display = 'none';
+      document.getElementById('termsModal').style.display = 'block';
+      sparkle(e.clientX, e.clientY);
+    });
+
+    document.getElementById('termsForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('termsModal').style.display = 'none';
+      document.getElementById('popup').style.display = 'block';
+      launchFirework();
+    });
+
+    function sparkle(x, y) {
+      for (let i = 0; i < 15; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'sparkle';
+        spark.style.left = `${x + (Math.random() - 0.5) * 100}px`;
+        spark.style.top = `${y + (Math.random() - 0.5) * 100}px`;
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 800);
+      }
+    }
+  </script>
+
+  <div id="final-heart" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); font-size:4em; z-index:9999; pointer-events:none; animation: pulse 1.2s infinite;">❤️</div>
+
+</body>
